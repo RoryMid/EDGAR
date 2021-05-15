@@ -68,8 +68,8 @@
     "            x = cell.get_attribute(\"href\")\n",
     "        y = row.find_elements_by_tag_name(\"td\")[3].text\n",
     "        urls[x] = y\n",
-    "    return urls\n",
-    "    print('urls gathered, chrome closing')"
+    "    print('urls gathered, chrome closing')",
+    "    return urls\n","
    ]
   },
   {

@@ -33,16 +33,12 @@ def get_sentiment_word_dict():
         col = df[w]
         for index in range(len(col)):
             if col.iloc[index] != 0:
-                sen_words[w].append(df['Word'].iloc[index])
+                sen_words[w].append(df['Word'].iloc[index].lower())
     
     
     
     
     
     return sen_words
-
-
-
-
 
 print(get_sentiment_word_dict())

@@ -2,7 +2,7 @@
 """
 Created on Tue May 25 18:54:49 2021
 
-@author: TalinKeoshgerian
+
 """
 
 def clean_html_text(html_text):

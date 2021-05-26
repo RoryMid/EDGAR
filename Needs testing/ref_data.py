@@ -46,7 +46,7 @@ def get_yahoo_data(start_date,end_date,tickers):
             yahoo_financials = YahooFinancials(i)
             historical_stock_prices = yahoo_financials.get_historical_price_data(start_date, end_date, 'daily')
             df = pd.DataFrame(historical_stock_prices[i]['prices'])
-            df1 = df[['formatted_date','high','low','adjclose','volume']]
+            df1 = df[['formatted_date','high','low','adjclose','volume']].copy()
             df1['1daily_return'] = (df1.adjclose.shift(-1) - df1.adjclose)/df1.adjclose
             df1['2daily_return'] = (df1.adjclose.shift(-2) -df1.adjclose)/df1.adjclose
             df1['3daily_return'] = (df1.adjclose.shift(-3) - df1.adjclose)/df1.adjclose

@@ -56,6 +56,10 @@ def write_document_sentiments(input_folder, output_file):
                     # now check if its in dictionary
                     for key in key_words:
                         
+                        if word2 in sen_words[key]:
+                            df[key].iloc[current_df_row] += 1
+                        
+                        '''
                         # now iterate through sen_words[key]
                         for sen_word in sen_words[key]:
                         
@@ -65,7 +69,7 @@ def write_document_sentiments(input_folder, output_file):
                             
                                 # ADD 1 TO THE DF AT THAT POINT (KEY)
                                 df[key].iloc[current_df_row] += 1
-             
+                        '''
                 
         current_df_row += 1 # add one to the row index when moving on to the next file            
         
@@ -77,9 +81,9 @@ def write_document_sentiments(input_folder, output_file):
             
     
 
-#(write_document_sentiments( \
- # r'C:\Users\AlfieCrust\OneDrive - Kubrick Group\Desktop\Training Notes\7. Python\Python Project\EdgarRipple\TestData2' \
-  #    , 'PATH NAME OF FOLDER'))
+(write_document_sentiments( \
+  r'C:\Users\AlfieCrust\OneDrive - Kubrick Group\Desktop\Training Notes\7. Python\Python Project\EdgarRipple\TestData2' \
+      , 'PATH NAME OF FOLDER'))
 
 
 

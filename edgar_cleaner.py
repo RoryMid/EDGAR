@@ -14,7 +14,7 @@ def clean_html_text(html_text):
     with open(html_text, 'r', encoding = 'utf-8') as file:
         soup = BeautifulSoup(file, 'lxml')
         soup = soup.getText()
-        soup = re.sub('[^A-Za-z0-9 ]+', '', soup).split()
+        soup = re.sub('[^A-Za-z0-9 ]+', '', soup)
     return soup    
     
 

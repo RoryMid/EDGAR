@@ -119,7 +119,7 @@ def download_files_10k(ticker,dest_folder):
 #tl = str(args.ticker_list).split(',')
 
 
-if __name__ == '__main__':
-    download_files_10k(tl, args.dest_folder)
+#if __name__ == '__main__':
+    #download_files_10k(tl, args.dest_folder)
     
 

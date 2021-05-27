@@ -75,7 +75,7 @@ def selenium_activate(key):
             #import re
             x = re.sub(r"/ix\?doc=", '', x)
             time.sleep(1)
-        y = row.find_elements_by_tag_name("td")[3].text
+        y = row.find_elements_by_tag_name("td")[2].text
         time.sleep(1)
         url[x] = y
     
@@ -85,7 +85,7 @@ def selenium_activate(key):
             #import re
             x = re.sub(r"/ix\?doc=", '', x)
             time.sleep(1)
-        y = row.find_elements_by_tag_name("td")[3].text
+        y = row.find_elements_by_tag_name("td")[2].text
         time.sleep(1)
         url[x] = y
 

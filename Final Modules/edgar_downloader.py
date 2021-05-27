@@ -50,6 +50,13 @@ def selenium_activate(key):
     button2 = driver.find_element_by_xpath(r'/html/body/main/div[4]/div[2]/div[3]/div/button[1]')
     button2.click()
 
+    w.until(expected_conditions.element_to_be_clickable((By.XPATH, r'/html/body/main/div[5]/div/div[1]/div[1]/div/input[3]')))
+    xpath_search1 = r'/html/body/main/div[5]/div/div[1]/div[1]/div/input[3]'
+    driver.find_element_by_xpath(xpath_search1).click()
+
+    searchinput_path1 = r'/html/body/main/div[5]/div/div[1]/div[1]/div/input[3]'
+    driver.find_element_by_xpath(searchinput_path1).clear()
+
     w.until(expected_conditions.element_to_be_clickable((By.XPATH, r'/html/body/main/div[5]/div/div[1]/div[1]/div/input[2]')))
     xpath_search = r'/html/body/main/div[5]/div/div[1]/div[1]/div/input[2]'
     driver.find_element_by_xpath(xpath_search).click()

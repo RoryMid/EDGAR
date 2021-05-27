@@ -13,12 +13,19 @@ from selenium.webdriver.common.by import By
 headers = {"User-Agent": r'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36'}
 
 def write_page(url, file_path): 
+    '''
+    Opens url and writes html to the file path
+    '''
     with open(file_path, 'w',  encoding='utf-8') as file:
         response = requests.get(url, headers = headers)
         soup = BeautifulSoup(response.text, 'lxml')
         file.write(str(soup))
 
 def selenium_activate(key):
+    '''
+    Selenium gets to a page with a table of 10-k filings. Saves the (cleaned) links with their date. 
+    Returns dictionary or URL and Date.
+    '''
     driver = webdriver.Chrome()
     print('loading up website')
 
@@ -77,6 +84,9 @@ def selenium_activate(key):
 
 
 def download_files_10k(ticker,dest_folder):
+    '''
+    Changes directory to destination folder. Calls the selenium to get a link, date dictionary. Uses these to   write the html to the file name.
+    '''
     os.chdir(dest_folder)
     for tick in ticker:
         urls= selenium_activate(tick)

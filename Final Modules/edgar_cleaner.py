@@ -13,6 +13,7 @@ def clean_html_text(html_text):
     '''
     Takes a html file and returns just the text
     '''
+    import re
     from bs4 import BeautifulSoup
     with open(html_text, 'r', encoding = 'utf-8') as file:
         soup = BeautifulSoup(file, 'lxml')

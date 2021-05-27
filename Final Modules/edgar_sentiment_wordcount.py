@@ -41,7 +41,7 @@ def write_document_sentiments(input_folder, output_folder):
                    'Negative':0, 'Positive':0, 'Uncertainty':0, 'Litigious':0, 'Constraining':0, 'Superfluous':0, 'Interesting':0, 'Modal':0}
         df = df.append(new_row, ignore_index=True)
         #print(df)
-        
+        print('Counting:',file)
         
         with open(input_folder+'/'+file, encoding="utf8") as file:
 

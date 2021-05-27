@@ -66,10 +66,10 @@ if __name__ == '__main__':
     
     
     print(argu)
-    d.download_files_10k(argu, raw)
-    
+    #d.download_files_10k(argu, raw)
+    print('Now Cleaning...')
     c.write_clean_html_text_files(raw, cln)
-    
+    print('Now Counting the sentiment words...')
     swc.write_document_sentiments(cln, out)
     
     

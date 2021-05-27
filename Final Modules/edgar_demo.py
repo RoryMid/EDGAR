@@ -16,9 +16,6 @@ parser = argparse.ArgumentParser(description='demo of command line argument pars
 
 
 parser.add_argument("--ticker_list", default='AAPL,MSFT', type=str, help='provide a list of tickers seperated by , e.g. "MSFT,AAPL"')
-parser.add_argument("--raw_folder", type=str, help='provide a folder path to contain the raw html files')
-parser.add_argument("--clean_folder", type=str, help='provide a folder path to contain the clean text files')
-parser.add_argument("--output_folder", type=str, help='provide a destination folder path')
 
 args = parser.parse_args()
 

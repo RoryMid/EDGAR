@@ -74,7 +74,10 @@ def get_sentiment_word_dict():
     # words will be {'Negative': [Bad, Down, etc.], etc.}
     
     # have to have Words.csv in the same working directory you are in
-    df = pd.read_csv('Words.csv')
+    url = 'https://drive.google.com/file/d/12ECPJMxV2wSalXG8ykMmkpa1fq_ur0Rf/view'
+    path = 'https://drive.google.com/uc?export=download&id='+url.split('/')[-2]
+    df = pd.read_csv(path)
+
     
     # now need to populate words - want to iterate through the DF and 
     # assign the column to the key appropriately

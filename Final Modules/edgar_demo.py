@@ -4,6 +4,21 @@ Created on Thu May 27 14:22:11 2021
 
 """
 
+
+import argparse
+parser1 = argparse.ArgumentParser(description='demo of command line argument parsing')      
+
+
+parser1.add_argument("--ticker_list", default='AAPL,MSFT', type=str, help='provide a list of tickers seperated by , e.g. "MSFT,AAPL"')
+
+args = parser1.parse_args()
+
+import sys
+
+
+sys.argv = [sys.argv[2]]
+
+
 import edgar_downloader as d
 import edgar_cleaner as c
 import ref_data as r
@@ -12,15 +27,16 @@ import edgar_sentiment_wordcount as swc
 import argparse
 import os
 
-parser = argparse.ArgumentParser(description='demo of command line argument parsing')      
+import re
 
 
-parser.add_argument("--ticker_list", default='AAPL,MSFT', type=str, help='provide a list of tickers seperated by , e.g. "MSFT,AAPL"')
-
-args = parser.parse_args()
 
 #so args.ticker_list is a string
-tl = str(args.ticker_list).split(',')
+tl = str(sys.argv).split(',')
+
+# removing stuff
+for t in tl:
+    t = re.sub("[^a-zA-Z]+", "", t)
 
 cwd = os.getcwd()
 
@@ -39,8 +55,18 @@ if not os.path.exists(cln):
 if __name__ == '__main__':
     # HERE RUN MODULES IN ORDER TO PRODUCE A DEMO, GIVEN THE SPECIFIED ENTERIES
     # -- will put the files in the cwd
+    #so args.ticker_list is a string
+   
     
-    d.download_files_10k(tl, raw)
+    argu = []
+    # removing stuff
+    for s in tl:
+        argu.append(''.join([i for i in s if i.isalpha()]))
+
+    
+    
+    print(argu)
+    d.download_files_10k(argu, raw)
     
     c.write_clean_html_text_files(raw, cln)
     

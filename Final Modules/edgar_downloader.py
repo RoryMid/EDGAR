@@ -10,6 +10,11 @@ from selenium.webdriver.support import expected_conditions
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 
+import argparse
+import sys
+
+parser = argparse.ArgumentParser(description='demo of command line argument parsing')
+
 headers = {"User-Agent": r'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.108 Safari/537.36'}
 
 def write_page(url, file_path): 
@@ -57,11 +62,11 @@ def selenium_activate(key):
     time.sleep(2)
 
     url = {}
-
+    import re
     for row in driver.find_elements_by_css_selector("tr.odd"):
         for cell in row.find_elements_by_class_name("document-link"):
             x = cell.get_attribute("href")
-            import re
+            #import re
             x = re.sub(r"/ix\?doc=", '', x)
             time.sleep(1)
         y = row.find_elements_by_tag_name("td")[3].text
@@ -71,7 +76,7 @@ def selenium_activate(key):
     for row in driver.find_elements_by_css_selector("tr.even"):
         for cell in row.find_elements_by_class_name("document-link"):
             x = cell.get_attribute("href")
-            import re
+            #import re
             x = re.sub(r"/ix\?doc=", '', x)
             time.sleep(1)
         y = row.find_elements_by_tag_name("td")[3].text
@@ -96,3 +101,19 @@ def download_files_10k(ticker,dest_folder):
             write_page(key, f'{tick}_10-K_{value}.html')
             time.sleep(1)
     print('complete')
+
+
+
+parser.add_argument("--ticker_list", default='AAPL,MSFT', type=str, help='provide a list of tickers seperated by ,')
+parser.add_argument("--dest_folder", default='C:\\', type=str, help='provide a destination folder path')
+
+args = parser.parse_args()
+
+#so args.ticker_list is a string
+tl = str(args.ticker_list).split(',')
+
+
+if __name__ == '__main__':
+    download_files_10k(tl, args.dest_folder)
+    
+

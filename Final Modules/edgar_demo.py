@@ -29,6 +29,12 @@ raw = cwd+'/Raw_Data'
 cln = cwd+'/Clean_Data'
 out = cwd
 
+# making directories
+if not os.path.exists(raw):
+    os.makedirs(raw)
+if not os.path.exists(cln):
+    os.makedirs(cln)
+
 
 if __name__ == '__main__':
     # HERE RUN MODULES IN ORDER TO PRODUCE A DEMO, GIVEN THE SPECIFIED ENTERIES

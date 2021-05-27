@@ -24,7 +24,7 @@ def get_sp100():
         tickers.append(td_soup[0].text.replace('\n', '').replace('BRK.B','BRK-B'))
     return tickers
 
-print(get_sp100())
+#print(get_sp100())
 
 
 
@@ -95,4 +95,4 @@ def get_sentiment_word_dict():
     
     
 
-print(get_sentiment_word_dict())
+#print(get_sentiment_word_dict())

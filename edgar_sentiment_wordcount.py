@@ -8,7 +8,11 @@ import os
 import get_sentiment_word_dict
 import pandas as pd
 
-def write_document_sentiments(input_folder, output_file):
+import argparse
+
+parser = argparse.ArgumentParser(description='demo of command line argument parsing')
+
+def write_document_sentiments(input_folder, output_folder):
             
     sen_words = get_sentiment_word_dict.get_sentiment_word_dict()
     
@@ -36,7 +40,7 @@ def write_document_sentiments(input_folder, output_file):
         new_row = {'Symbol':file_name[0], 'ReportType':file_name[1], 'FilingDate':file_name[2], \
                    'Negative':0, 'Positive':0, 'Uncertainty':0, 'Litigious':0, 'Constraining':0, 'Superfluous':0, 'Interesting':0, 'Modal':0}
         df = df.append(new_row, ignore_index=True)
-        print(df)
+        #print(df)
         
         
         with open(input_folder+'/'+file, encoding="utf8") as file:
@@ -74,17 +78,20 @@ def write_document_sentiments(input_folder, output_file):
         current_df_row += 1 # add one to the row index when moving on to the next file            
         
     # and write to file
-    df.to_csv(output_file+'/document_sentiments.csv', index=True, header=True)
-    print(df)
+    df.to_csv(output_folder+'/document_sentiments.csv', index=True, header=True)
+    
 
 ###################################      
             
     
+parser.add_argument("--input_folder", type=str, help='provide a path for the input folder containing html files')
+parser.add_argument("--output_folder", type=str, help='provide a destination folder path')
 
-(write_document_sentiments( \
-  r'C:\Users\AlfieCrust\OneDrive - Kubrick Group\Desktop\Training Notes\7. Python\Python Project\EdgarRipple\TestData2' \
-      , 'PATH NAME OF FOLDER'))
+args = parser.parse_args()
 
+
+if __name__ == '__main__':
+    write_document_sentiments(args.input_folder, args.output_folder) 
 
 
 

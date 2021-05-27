@@ -11,7 +11,6 @@ from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.by import By
 
 import argparse
-import sys
 
 parser = argparse.ArgumentParser(description='demo of command line argument parsing')
 
@@ -104,8 +103,8 @@ def download_files_10k(ticker,dest_folder):
 
 
 
-parser.add_argument("--ticker_list", default='AAPL,MSFT', type=str, help='provide a list of tickers seperated by ,')
-parser.add_argument("--dest_folder", default='C:\\', type=str, help='provide a destination folder path')
+parser.add_argument("--ticker_list", default='AAPL,MSFT', type=str, help='provide a list of tickers seperated by , e.g. "MSFT,AAPL"')
+parser.add_argument("--dest_folder", type=str, help='provide a destination folder path')
 
 args = parser.parse_args()
 

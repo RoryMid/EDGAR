@@ -45,7 +45,7 @@ def new_downloader(ticker):
     requests_params = {'action': 'getcompany',
             'CIK': ticker.upper(),
             'type': '10-K',
-            'datea': 20000101,
+            'datea': 20010101,
             'dateb': 20210530,
             'owner': 'exclude',
             'output': 'html'}

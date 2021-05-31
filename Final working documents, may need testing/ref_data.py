@@ -38,7 +38,7 @@ def get_yahoo_data(start_date,end_date,tickers):
     for i in tickers:
         try:
             yahoo_financials = YahooFinancials(i)
-            historical_stock_prices = yahoo_financials.get_historical_price_data('2001-01-01','2021-05-30', 'daily')
+            historical_stock_prices = yahoo_financials.get_historical_price_data(start_date,end_date, 'daily')
             df = pd.DataFrame(historical_stock_prices[i]['prices'])
             df1 = df[['formatted_date','high','low','adjclose','volume']].copy()
             #create copy to avoid changing OG df

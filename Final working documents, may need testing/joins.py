@@ -14,7 +14,7 @@ def yahoo_avg():
     pd.set_option('expand_frame_repr', False)
     pd.set_option('display.max_columns', 100)
     tickers = get_sp100()
-    df_yahoo_avg=get_yahoo_data('2000-01-01','2021-05-30',tickers)
+    df_yahoo_avg=get_yahoo_data('2001-01-01','2021-05-30',tickers)
     df_yahoo_avg['formatted_date']  = pd.to_datetime(df_yahoo_avg['formatted_date'])
     df_yahoo_avg = df_yahoo_avg.groupby('formatted_date').agg({'adjclose':'sum','volume':'sum'})
     mask = df_yahoo_avg.adjclose
@@ -36,7 +36,7 @@ def merge_wordcounts_and_yahoo(output_folder):
     # Get yahoo data from ref_data_dryer module:
 
     tickers = get_sp100()                                            # Need to add all tickers
-    df_yahoo = get_yahoo_data('2000-01-01','2021-05-30', tickers)
+    df_yahoo = get_yahoo_data('2001-01-01','2021-05-30', tickers)
     
     # Convert dates to datetime format:
     df_yahoo['formatted_date']  = pd.to_datetime(df_yahoo['formatted_date'])

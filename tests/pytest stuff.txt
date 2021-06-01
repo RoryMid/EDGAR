@@ -1,0 +1,9 @@
+python -m pytest -v test/test_is_email.py --> WORKS
+the -v shows everything
+
+--disable-pytest-warnings 
+
+
+disable warnings summary, overrides -r w flag
+
+python -m pytest -v tests/test_yahoo_avg.py --disable-pytest-warnings

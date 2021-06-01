@@ -19,6 +19,6 @@ To run this project:
 
 ```
 $ git clone https://gitlab.com/kubrick-group/training/teaching/assessments/de20/edgar-ripple/EdgarRipple.git
-$ pip install requirements.txt
+$ pip install -r EdgarRipple/requirements.txt
 $ python edgar_full.py
 ```

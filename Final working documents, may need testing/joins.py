@@ -51,11 +51,11 @@ def merge_wordcounts_and_yahoo(output_folder):
                   )
     
     # Just some tests:
-    x = df_wordcounts[df_wordcounts.columns[0]].count()
-    y = df_words[df_words.columns[0]].count()
-    print(f'Number of rows (10-Ks) in wordcounts doc was : {x}')
-    print(f'Number of rows in the resulting dataframe is : {y}')
-    print(f'Hopefully {x} and {y} are the same number.')
+    #x = df_wordcounts[df_wordcounts.columns[0]].count()
+    #y = df_words[df_words.columns[0]].count()
+    #print(f'Number of rows (10-Ks) in wordcounts doc was : {x}')
+    #print(f'Number of rows in the resulting dataframe is : {y}')
+    #print(f'Hopefully {x} and {y} are the same number.')
     df_avg = yahoo_avg()
     df = pd.merge(df_words,df_avg,how='left',on='formatted_date')
     df.to_csv('sentiments_returns.csv', index=True, header=True)

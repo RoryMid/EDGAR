@@ -5,6 +5,9 @@ Created on Tue May 25 18:54:49 2021
 
 """
 import argparse
+import re
+from bs4 import BeautifulSoup
+import os
 
 parser = argparse.ArgumentParser(description='demo of command line argument parsing')
 
@@ -13,8 +16,6 @@ def clean_html_text(html_text):
     '''
     Takes a html file and returns just the text
     '''
-    import re
-    from bs4 import BeautifulSoup
     with open(html_text, 'r', encoding = 'utf-8') as file:
         soup = BeautifulSoup(file, 'lxml')
         soup = soup.getText()
@@ -26,7 +27,6 @@ def write_clean_html_text_files(input_folder, dest_folder):
     '''
     For each html file in the input folder, get the text and then saves this in destination folder
     '''
-    import os
     os.chdir(dest_folder)
     for filename in os.listdir(input_folder):
         words = clean_html_text(f'{input_folder}\\{filename}')

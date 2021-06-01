@@ -26,8 +26,6 @@ def get_sp100():
         tickers.append(td_soup[0].text.replace('\n', '').replace('BRK.B','BRK-B'))
     return tickers
 
-print(get_sp100())
-
 
 
 def get_yahoo_data(start_date,end_date,tickers):

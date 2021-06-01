@@ -4,15 +4,10 @@ Created on Thu May 27 12:14:53 2021
 @author: MattRoberts
 """
 
-import os
 import pandas as pd
 from ref_data import get_yahoo_data,get_sp100
-import datetime as dt
 
 def yahoo_avg():
-    pd.set_option('display.max_columns', 500)
-    pd.set_option('expand_frame_repr', False)
-    pd.set_option('display.max_columns', 100)
     tickers = get_sp100()
     df_yahoo_avg=get_yahoo_data('2001-01-01','2021-05-30',tickers)
     df_yahoo_avg['formatted_date']  = pd.to_datetime(df_yahoo_avg['formatted_date'])
@@ -23,10 +18,9 @@ def yahoo_avg():
     return df_yahoo_avg
 
 
+print(yahoo_avg())
+
 def merge_wordcounts_and_yahoo(output_folder):
-    # To display big dataframes:
-    pd.set_option('display.max_columns', 500)
-    pd.set_option('expand_frame_repr', False)
     
     # Import wordcounts data from .csv file:               # Still need to make the complete csv?
     wordcounts_csv = output_folder+'/document_sentiments.csv'          # need csv file in same folder as this module :)

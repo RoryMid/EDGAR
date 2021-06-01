@@ -3,13 +3,15 @@
 Created on Wed May 26 09:07:19 2021
 
 """
+import requests 
+from bs4 import BeautifulSoup as bs
+from yahoofinancials import YahooFinancials
+import pandas as pd
 
 def get_sp100():
     '''
     Scrapes wikipedia page to get tickers for the S&P100 companies. Returns list.
     '''
-    import requests 
-    from bs4 import BeautifulSoup as bs
     
     url  = 'https://en.wikipedia.org/wiki/S%26P_100'
     r = requests.get(url)
@@ -32,8 +34,7 @@ def get_yahoo_data(start_date,end_date,tickers):
     '''
     Uses Yahoo financials to get pricing info on each company. Creates columns for 1, 2, 3, 5, 10 daily returns. Returns dataframe.
     '''
-    from yahoofinancials import YahooFinancials
-    import pandas as pd
+
     dftot = pd.DataFrame(columns=['formatted_date','high','low','adjclose','volume','1daily_return','2daily_return','3daily_return','5daily_return','10daily_return'])
     for i in tickers:
         try:
@@ -59,7 +60,6 @@ def get_yahoo_data(start_date,end_date,tickers):
 
 
 def get_sentiment_word_dict():
-    import pandas as pd
     
     key_words = ['Negative', 'Positive', 'Uncertainty', 'Litigious', 'Constraining' \
                  , 'Superfluous', 'Interesting', 'Modal']

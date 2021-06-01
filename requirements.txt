@@ -1,0 +1,10 @@
+requests
+bs4
+argparse
+numpy
+pandas
+seaborn
+matplotlib
+statsmodels
+datetime
+yahoofinancials

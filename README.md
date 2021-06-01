@@ -15,7 +15,7 @@ Project is purely created in Python. Its uses libraries such as:
 * mat plot lib
 	
 ## Setup
-To run this project, clone the project:
+To run this project:
 
 ```
 $ git clone https://gitlab.com/kubrick-group/training/teaching/assessments/de20/edgar-ripple/EdgarRipple.git

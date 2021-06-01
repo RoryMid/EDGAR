@@ -5,7 +5,7 @@ Created on Tue May 25 18:45:22 2021
 """
 
 import os
-import get_sentiment_word_dict
+import ref_data as r
 import pandas as pd
 
 import argparse
@@ -14,7 +14,7 @@ parser = argparse.ArgumentParser(description='demo of command line argument pars
 
 def write_document_sentiments(input_folder, output_folder):
             
-    sen_words = get_sentiment_word_dict.get_sentiment_word_dict()
+    sen_words = r.get_sentiment_word_dict()
     
     key_words = ['Negative', 'Positive', 'Uncertainty', 'Litigious', 'Constraining' \
                  , 'Superfluous', 'Interesting', 'Modal']
@@ -35,13 +35,13 @@ def write_document_sentiments(input_folder, output_folder):
     
         # extract first three columns from this and add row
         file_name = file.split('_') # 0, 1 ,2
-        file_name[2] = file_name[2][0:10]
+        file_name[2] = file_name[2][0:11]
         # now add row
         new_row = {'Symbol':file_name[0], 'ReportType':file_name[1], 'FilingDate':file_name[2], \
                    'Negative':0, 'Positive':0, 'Uncertainty':0, 'Litigious':0, 'Constraining':0, 'Superfluous':0, 'Interesting':0, 'Modal':0}
         df = df.append(new_row, ignore_index=True)
         #print(df)
-        
+        print('Counting:',file)
         
         with open(input_folder+'/'+file, encoding="utf8") as file:
 

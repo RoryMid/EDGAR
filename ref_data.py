@@ -30,37 +30,31 @@ print(get_sp100())
 
 def get_yahoo_data(start_date,end_date,tickers):
     '''
-    Uses Yahoo financials to get pricing info on each company. 
-    Creates columns for 1, 2, 3, 5, 10 daily returns.
-    Returns dataframe.
+    Uses Yahoo financials to get pricing info on each company. Creates columns for 1, 2, 3, 5, 10 daily returns. Returns dataframe.
     '''
     from yahoofinancials import YahooFinancials
     import pandas as pd
-    
-    dftot = pd.DataFrame(columns=['formatted_date','high','low','adjclose','volume',\
-                                  '1daily_return','2daily_return','3daily_return',\
-                                      '5daily_return','10daily_return'])
-    
+    dftot = pd.DataFrame(columns=['formatted_date','high','low','adjclose','volume','1daily_return','2daily_return','3daily_return','5daily_return','10daily_return'])
     for i in tickers:
         try:
             yahoo_financials = YahooFinancials(i)
-            historical_stock_prices = yahoo_financials.get_historical_price_data(start_date, end_date, 'daily')
+            historical_stock_prices = yahoo_financials.get_historical_price_data(start_date,end_date, 'daily')
             df = pd.DataFrame(historical_stock_prices[i]['prices'])
             df1 = df[['formatted_date','high','low','adjclose','volume']].copy()
-            df1['1daily_return'] = (df1.adjclose.shift(-1) - df1.adjclose)/df1.adjclose
-            df1['2daily_return'] = (df1.adjclose.shift(-2) -df1.adjclose)/df1.adjclose
-            df1['3daily_return'] = (df1.adjclose.shift(-3) - df1.adjclose)/df1.adjclose
-            df1['5daily_return'] = (df1.adjclose.shift(-5) - df1.adjclose)/df1.adjclose
-            df1['10daily_return'] = (df1.adjclose.shift(-10) - df1.adjclose)/df1.adjclose
+            #create copy to avoid changing OG df
+            mask = df1.adjclose
+            #adding mask to dry up a bit 
+            df1['1daily_return'] = (mask.shift(-1) - mask)/mask
+            df1['2daily_return'] = (mask.shift(-2) -mask)/mask
+            df1['3daily_return'] = (mask.shift(-3) - mask)/mask
+            df1['5daily_return'] = (mask.shift(-5) - mask)/mask
+            df1['10daily_return'] = (mask.shift(-10) - mask)/mask
             df1['ticker'] = i
             dftot = dftot.append(df1)
         except:
             print(f'{i} has no data for these dates or there is an error')
 
     return dftot
-
-
-get_yahoo_data('2020-01-01','2020-01-30',get_sp100())
 
 
 
@@ -83,6 +77,7 @@ def get_sentiment_word_dict():
     url = 'https://drive.google.com/file/d/12ECPJMxV2wSalXG8ykMmkpa1fq_ur0Rf/view'
     path = 'https://drive.google.com/uc?export=download&id='+url.split('/')[-2]
     df = pd.read_csv(path)
+
     
     # now need to populate words - want to iterate through the DF and 
     # assign the column to the key appropriately
@@ -97,5 +92,7 @@ def get_sentiment_word_dict():
     
     
     return sen_words
+    
+    
 
-print(get_sentiment_word_dict())
+#print(get_sentiment_word_dict())

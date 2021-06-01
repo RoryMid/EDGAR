@@ -2,14 +2,18 @@
 """
 Created on Tue May 25 18:54:49 2021
 
-@author: TalinKeoshgerian
+
 """
-import re 
+import argparse
+
+parser = argparse.ArgumentParser(description='demo of command line argument parsing')
+
 
 def clean_html_text(html_text):
     '''
     Takes a html file and returns just the text
     '''
+    import re
     from bs4 import BeautifulSoup
     with open(html_text, 'r', encoding = 'utf-8') as file:
         soup = BeautifulSoup(file, 'lxml')
@@ -29,7 +33,13 @@ def write_clean_html_text_files(input_folder, dest_folder):
         with open(filename[:-5] + '.txt', 'w',encoding = 'utf-8') as file:
             file.write(str(words))
             
+                     
             
-write_clean_html_text_files(r"C:\Users\TalinKeoshgerin\Downloads\TESTEROO"\
-                            ,r"C:\Users\TalinKeoshgerin\Downloads\TESTEROO2")            
-            
+parser.add_argument("--input_folder", type=str, help='provide a path for the input folder containing html files')
+parser.add_argument("--dest_folder", type=str, help='provide a destination folder path')
+
+args = parser.parse_args()
+
+
+if __name__ == '__main__':
+    write_clean_html_text_files(args.input_folder, args.dest_folder) 

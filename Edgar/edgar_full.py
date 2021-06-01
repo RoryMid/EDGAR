@@ -10,6 +10,7 @@ import edgar_cleaner as c
 import ref_data as r
 import edgar_sentiment_wordcount as swc
 import joins as j
+import analysis as a
 
 import os
 
@@ -33,12 +34,21 @@ if __name__ == '__main__':
     # -- will put the files in the cwd
     
     d.download_files_10k(r.get_sp100(), raw)
-    
+    print('Now Cleaning...')
     c.write_clean_html_text_files(raw, cln)
-    
+    print('Now Counting the sentiment words...')
     swc.write_document_sentiments(cln, out)
-
-    j.merge_wordcounts_and_yahoo(out)
+    
+    print('Producing table of word count and financial data')
+    j.merge_wordcounts_and_yahoo(cwd)
+    
+    print('Analysis: Producing graphs + saving regression analysis table')
+    a.run_analysis()
+    
+    print('END')
+    
+    
+    #### END #####
     
     
 

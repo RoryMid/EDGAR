@@ -12,7 +12,7 @@ Project is purely created in Python. Its uses libraries such as:
 * requests
 * beautiful soup
 * pandas
-* mat plot lib
+* matplotlib
 	
 ## Setup
 To run this project:

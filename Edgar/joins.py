@@ -6,6 +6,7 @@ Created on Thu May 27 12:14:53 2021
 
 import pandas as pd
 from ref_data import get_yahoo_data,get_sp100
+import os
 
 def yahoo_avg():
     tickers = get_sp100()
@@ -17,8 +18,6 @@ def yahoo_avg():
         df_yahoo_avg[f'{str(i)}daily_return_market'] = (mask.shift(-i) - mask)/mask
     return df_yahoo_avg
 
-
-print(yahoo_avg())
 
 def merge_wordcounts_and_yahoo(output_folder):
     
@@ -52,5 +51,6 @@ def merge_wordcounts_and_yahoo(output_folder):
     #print(f'Hopefully {x} and {y} are the same number.')
     df_avg = yahoo_avg()
     df = pd.merge(df_words,df_avg,how='left',on='formatted_date')
+    os.chdir("..")
     df.to_csv('sentiments_returns.csv', index=True, header=True)
 

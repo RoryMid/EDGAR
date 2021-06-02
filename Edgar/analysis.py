@@ -98,7 +98,7 @@ def run_analysis():
     #df1 = pd.concat([df['positivity'], df['daily_volatility_over_market_1']], axis=1)
     
     for ax, colour, title, y, alpha in zip(ax_arr, colour_list, title_list, y_list, alpha_list):
-        ax.set_ylim(0,500)
+        ax.set_ylim(0,200)
         ax.set_xlim(0, 2)
         ax.set_title(title)
         ax.scatter(x, y, c=colour, alpha=alpha)
